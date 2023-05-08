@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      color: #fff;
+      position: relative; /* add position relative */
+    }
+
+    /* add new styles for video */
+    video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+    }
+
+    form {
+      background-color: #333;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 5px #ccc;
+      max-width: 500px;
+      margin: auto;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      font-size: 16px;
+      background-color: #fff;
+      color: #000;
+    }
+
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0062cc;
+    }
+
+    h1 {
+      font-size: 36px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+  </style>
+</head>
+<body>
+<video autoplay muted loop>
+  <source src="/video/background.mp4" type="video/mp4">
+</video>
+<br><br><br><br><br><br>
+<h1>Login</h1>
+<form method="post" th:action="@{/login}">
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+  <button type="submit">Login</button>
+</form>
+</body>
+</html>
