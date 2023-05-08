@@ -1,11 +1,13 @@
 package com.cantt39t.fitnesswebapp.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
+
+import java.util.Set;
 
 
 @Entity
@@ -20,13 +22,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true)
     private String login;
 
-    @Column(length = 100)
+    @Column(nullable = true, unique = true)
     private String email;
 
-    @Column(length = 50)
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -63,5 +64,13 @@ public class User {
         INTERMEDIATE,
         ADVANCED
     }
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+    )
+    private Set<Role> roles;
 }
 
