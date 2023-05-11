@@ -1,16 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
   <link rel="stylesheet" type="text/css" href="/css/navbar.css">
-  <title>My Page</title>
+  <title>Home</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+  </script>
 
   <style>
     h1 {
       text-align: center;
       color: white;
-      font-size: 50px;
+      font-size: 70px;
       font-weight: lighter;
+    }
+
+    .btn-lg {
+      padding: 10px 20px;
+      font-size: 20px;
+    }
+
+
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0062cc;
     }
   </style>
 </head>
@@ -27,8 +56,15 @@
     <br>
     <br>
     <br>
-    <br>
-    <p th:text="'Welcome to sport30days, ' + ${name}"></p>
+    <div sec:authorize="isAuthenticated()">
+      <p th:text="'Welcome to sport30days, ' + ${name}"></p>
+    </div>
+    <div sec:authorize="not isAuthenticated()">
+      <p>Welcome to sport30days</p>
+      <div class="button-container-div">
+        <a href="/login" class="btn btn-primary btn-lg">Login</a>
+      </div>
+    </div>
   </h1>
 </div>
 
