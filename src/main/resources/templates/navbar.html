@@ -4,7 +4,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="/css/navbar.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-h2nU6veCk6hDHUe7NswmRrA5JD9P5vuV7y42R1MAvV4z+oLV6PFV3ZiGv2hqbIzS"
+        crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
+          integrity="sha384-vBgZ6vY8bfhBTZIZ+1Z50j2X9XoO7VIGTz6Uxt7VbN1FKGk7pN/Bo/n8DH7j4EIK"
+          crossorigin="anonymous"></script>
   <title><th:block th:text="${title}"></th:block></title>
 </head>
 <body>
@@ -14,16 +19,15 @@
     <li><a href="/home">Home</a></li>
     <li><a href="/trainings">Trainings</a></li>
     <li><a href="/contact">Contact</a></li>
-    <div class="search-container">
-      <div class="button-container-div">
-        <form action="/search" class="button-container-div">
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-      </div>
-    </div>
     <li class="right"><a href="/profile">Profile</a></li>
+    <li>
+      <form action="/search" method="get">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+    </li>
   </ul>
 </div>
+
 </body>
 
 </html>
