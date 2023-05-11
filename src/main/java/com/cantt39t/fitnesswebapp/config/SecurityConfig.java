@@ -20,16 +20,22 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
-                .antMatchers("/profile", "/orders", "/shop")
+                .antMatchers("/profile", "/training", "/contact")
                 .authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
+                .loginPage("/login")
                 .usernameParameter("email")
+                .passwordParameter("password")
                 .defaultSuccessUrl("/home")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/")
+                .logoutUrl("/logout") // configure the logout URL
+                .logoutSuccessUrl("/login?logout") // redirect to the login page after logout
+                .invalidateHttpSession(true) // invalidate the HTTP session
+                .deleteCookies("JSESSIONID") // delete the session cookie
+                .permitAll()
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/403");
