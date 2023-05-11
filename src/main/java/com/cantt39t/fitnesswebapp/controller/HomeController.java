@@ -29,7 +29,7 @@ public class HomeController {
         String email = authentication.getName();
         User currentUser = userService.getUserByEmail(email);
         System.out.println(currentUser);
-        model.addAttribute("name", currentUser.getName());
+        model.addAttribute("name", currentUser.getName() == null ? "" : currentUser.getName());
         return "home";
     }
 }
