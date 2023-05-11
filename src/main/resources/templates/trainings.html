@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <title>Trainings</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    <meta name="robots" content="noindex,nofollow"/>
+    <link rel="stylesheet" type="text/css" href="/css/training_container.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+          integrity="sha384-h2nU6veCk6hDHUe7NswmRrA5JD9P5vuV7y42R1MAvV4z+oLV6PFV3ZiGv2hqbIzS"
+          crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
+            integrity="sha384-vBgZ6vY8bfhBTZIZ+1Z50j2X9XoO7VIGTz6Uxt7VbN1FKGk7pN/Bo/n8DH7j4EIK"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+    </script>
+
+    <style>
+        h1 {
+            text-align: center;
+            color: black;
+            font-size: 50px;
+            font-weight: lighter;
+        }
+
+        .btn-lg {
+        padding: 10px 20px;
+        font-size: 20px;
+        }
+    </style>
+</head>
+<body style="background-color:black;">
+<div th:insert="navbar :: navbar">  </div>
+<form action="/trainings" method="get" id="form">
+    <select name="difficulty" id="difficulty">
+        <option value="">All</option>
+        <option value="EASY">Easy</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="HARD">Hard</option>
+    </select>
+    <input class="button" type="submit" value="Filter" style="background-color:white;">
+</form>
+
+<div th:each="t : ${trainings}">
+    <br>
+    <div class="layout">
+        <div class="page">
+            <div class="auth-content">
+                <div class="auth-content-main">
+                    <form id="kc-form-login" class="mb-2" th:action="@{/training(trainingId=${t.id})}" method="post">
+                        <div id="kc-content-wrapper">
+                            <div>
+                                <h1>
+                                    <p th:text="${t.name}"></p>
+                                </h1>
+                            </div>
+                            <br>
+                            <div>
+                                <div class="content-title">
+                                    <div class="title">Approaches: <span th:text="${t.approaches}"></span></div>
+                                </div>
+                            </div>
+                            <div class="content-title">
+                                <div class="title">Complexity: <span th:text="${t.complexity}"></span></div>
+                            </div>
+
+                            <div class="button-container-div">
+                                <a th:href="@{/training(trainingId=${t.id})}" class="btn btn-primary btn-lg">Open training</a>
+                            </div>
+
+                            <div class="content-main-section">
+                                <div id="error_username" class="error-message invisible"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
