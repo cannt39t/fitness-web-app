@@ -9,8 +9,9 @@ version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 tasks.jar {
+    enabled = false
     manifest {
-        attributes["Main-Class"] = "com.cantt39t.fitnesswebapp"
+        attributes["Main-Class"] = "com.cantt39t.fitnesswebapp.FitnessWebAppApplication"
     }
 }
 
